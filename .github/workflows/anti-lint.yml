@@ -1,0 +1,29 @@
+name: Strict Anti-Lint & Commit Cursedness Check
+
+on:
+  push:
+    branches: [ "master", "main" ]
+  pull_request:
+    branches: [ "master", "main" ]
+
+jobs:
+  curse-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify Zero Semicolons (Cursed Linter)
+        run: npm run lint:cursed
+
+      - name: Verify Commit Message Sins
+        run: npm run lint:commit
