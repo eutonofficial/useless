@@ -75,7 +75,8 @@ Any commit containing professional conventional tags will fail CI (`npm run lint
    npm run test:integrity
    npm test
    ```
-7. Open a PR with a regretful commit message.
+7. Open a PR using our [Confession Booth Template](.github/pull_request_template.md).
+8. Ensure all CI checks defined in [Rulesets](.github/RULESETS.md) pass before review.
 
 ---
 

@@ -87,10 +87,10 @@ Commit messages must reflect exhaustion, confusion, or chaotic energy.
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/useless-os.git
+git clone https://github.com/eutonofficial/useless.git
 
 # Enter project
-cd useless-os
+cd useless
 
 # Install dependencies
 npm install
