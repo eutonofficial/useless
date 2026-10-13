@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,400;0,700;1,400&family=VT323&display=swap');
+
+:root {
+  --win-bg: #008080;
+  --win-gray: #c0c0c0;
+  --win-dark: #808080;
+  --win-black: #000000;
+  --win-white: #ffffff;
+  --win-blue: #000080;
+  --win-blue-light: #1084d0;
+  --win-text: #000000;
+  --neon-yellow: #ffff00;
+  --neon-magenta: #ff00ff;
+  --neon-cyan: #00ffff;
+  --neon-lime: #00ff00;
+}
+
+* {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--win-bg);
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
+  color: var(--win-text);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Agonizing Asymmetric Layout Containers */
+.cursed-desktop-container {
+  /* Deliberately mismatched screen margins: left 19px, right 74px, top 37px, bottom 11px */
+  margin-top: 37px;
+  margin-bottom: 11px;
+  margin-left: 19px;
+  margin-right: 74px;
+  /* Deliberately mismatched paddings */
+  padding-top: 29px;
+  padding-bottom: 8px;
+  padding-left: 23px;
+  padding-right: 14px;
+}
+
+/* Retro Win95 3D Bevels with Asymmetric Borders */
+.win95-outset {
+  background: var(--win-gray);
+  border-top: 3px solid var(--win-white);
+  border-left: 2px solid var(--win-white);
+  border-right: 4px solid var(--win-black);
+  border-bottom: 2px solid var(--win-black);
+  box-shadow: inset 1px 2px 0px #dfdfdf, inset -2px -1px 0px var(--win-dark);
+}
+
+.win95-inset {
+  background: var(--win-white);
+  border-top: 3px solid var(--win-dark);
+  border-left: 2px solid var(--win-dark);
+  border-right: 1px solid var(--win-white);
+  border-bottom: 3px solid var(--win-white);
+  box-shadow: inset 1px 2px 0px var(--win-black), inset -2px -1px 0px #dfdfdf;
+}
+
+.win95-button {
+  background: var(--win-gray);
+  border-top: 3px solid var(--win-white);
+  border-left: 2px solid var(--win-white);
+  border-right: 3px solid var(--win-black);
+  border-bottom: 2px solid var(--win-black);
+  box-shadow: inset 1px 1px 0px #dfdfdf, inset -1px -1px 0px var(--win-dark);
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  /* Cursed mismatched button padding */
+  padding: 3px 17px 7px 9px;
+  margin: 3px 7px 5px 2px;
+  cursor: pointer;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.win95-button:active {
+  border-top: 2px solid var(--win-black);
+  border-left: 3px solid var(--win-black);
+  border-right: 2px solid var(--win-white);
+  border-bottom: 3px solid var(--win-white);
+  box-shadow: inset 2px 1px 0px var(--win-dark);
+  padding: 6px 14px 4px 12px;
+}
+
+.win95-titlebar {
+  background: linear-gradient(90deg, var(--win-blue) 0%, var(--win-blue-light) 100%);
+  color: white;
+  /* Cursed uneven title padding */
+  padding: 5px 4px 2px 9px;
+  font-weight: bold;
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  letter-spacing: 0.5px;
+}
+
+.win95-window {
+  box-shadow: 6px 4px 12px rgba(0, 0, 0, 0.45);
+  /* Mismatched window margins */
+  margin-top: 13px;
+  margin-bottom: 29px;
+  margin-left: 7px;
+  margin-right: 31px;
+}
+
+.marquee-container {
+  background: #000;
+  color: #00ff00;
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  /* Mismatched marquee padding */
+  padding: 6px 0 2px 0;
+  border-bottom: 3px solid #666;
+  border-top: 1px solid #222;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.marquee-text {
+  display: inline-block;
+  animation: marquee 25s linear infinite;
+}
+
+/* Blinking text effect */
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.blink {
+  animation: blink 0.8s infinite;
+}
+
+/* Pulse animation */
+@keyframes shake-warning {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(1deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-1deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.shake-active {
+  animation: shake-warning 0.15s infinite;
+}
+
+/* Pipeline Step Indicator Bar */
+.pipeline-step-active {
+  background: #ffff99;
+  border: 2px solid #ff0000;
+  color: #800000;
+  font-weight: bold;
+}
+
+.pipeline-step-completed {
+  background: #ccffcc;
+  border: 2px solid #008000;
+  color: #006400;
+}
+
+.pipeline-step-locked {
+  background: #dcdcdc;
+  border: 1px dashed #808080;
+  color: #777;
+}
