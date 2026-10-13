@@ -1,0 +1,30 @@
+{
+  "name": "useless-os",
+  "version": "0.0.0-alpha.worst",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "vitest run",
+    "lint:cursed": "node scripts/anti-linter-check.js",
+    "lint:commit": "node scripts/cursed-commit-lint.js",
+    "test:integrity": "node scripts/verify-tests-untouched.js",
+    "screen:pr": "node scripts/auto-pr-screener.js"
+  },
+  "dependencies": {
+    "next": "^14.2.15",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.1",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "14.2.15",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.3"
+  }
+}

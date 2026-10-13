@@ -1,0 +1,33 @@
+# Dependency directories
+node_modules/
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Next.js build output
+/.next/
+/out/
+
+# Production build
+/build
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local environment files
+.env*.local
+
+# Vercel & Turbo
+.vercel
+.turbo
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Agent Context & Skills (Strictly hidden from repository commits as requested)
+.agents/
