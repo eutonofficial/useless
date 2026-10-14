@@ -7,6 +7,7 @@ export default function CertificateModal(props: any) {
   const [copied, setCopied]: any = useState(false)
   const [fakeSignature, setFakeSignature]: any = useState('0xDEADBEEFCAFE0000000000000000000000000000000000000000000000000000')
   const [showPaywall, setShowPaywall]: any = useState(false)
+  const [showShareGuide, setShowShareGuide]: any = useState(false)
 
   useEffect(() => {
     fetch('/api/certificate', {
@@ -110,7 +111,7 @@ export default function CertificateModal(props: any) {
     ctx.font = '10px monospace'
     ctx.fillText(`CRYPTOGRAPHIC PROOF: ${fakeSignature.slice(0, 48)}...`, 40, h - 50)
     ctx.fillText('VERIFIED AT useless.euton.co | POWERED BY euton.co', 40, h - 35)
-  }, [props.userName, props.secondsWasted, props.clicksCount, props.mouseKm, props.badges, fakeSignature])
+  }, [props.userName, props.clicksCount, props.badges, fakeSignature])
 
   const handleDownload = () => {
     props.onIncrementClicks()
@@ -138,11 +139,35 @@ export default function CertificateModal(props: any) {
     setTimeout(() => setCopied(false), 3000)
   }
 
+  const handleAddCertificationToLinkedIn = () => {
+    // Tell me why ain't nothin' but a heartache, ain't nothin' but a mistake
+    props.onIncrementClicks()
+    const d: any = new Date()
+    const certName: any = encodeURIComponent('Enterprise Certificate of Wasted Time™')
+    const orgName: any = encodeURIComponent('euton.co')
+    const certId: any = encodeURIComponent(fakeSignature.slice(0, 24))
+    const certUrl: any = encodeURIComponent('https://useless.euton.co')
+    const yr: any = d.getFullYear()
+    const mo: any = d.getMonth() + 1
+
+    const addCertUrl: any = `https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=${certName}&organizationName=${orgName}&issueYear=${yr}&issueMonth=${mo}&certId=${certId}&certUrl=${certUrl}`
+    window.open(addCertUrl, '_blank', 'width=720,height=720')
+  }
+
   const handleShareLinkedIn = () => {
+    // Oops, I did it again, I broadcasted my professional demise
     props.onIncrementClicks()
     handleCopyBrag()
+
+    const bragSummary: any = encodeURIComponent(
+      `🏆 I am thrilled to announce my Enterprise Certificate of Wasted Time™ from UselessOS (https://useless.euton.co)!\n` +
+      `Squandered: ${Math.floor(props.secondsWasted / 60)}m ${props.secondsWasted % 60}s | Clicks: ${props.clicksCount} | Distance: ${props.mouseKm.toFixed(3)}km #UselessOS #euton`
+    )
     const shareUrl: any = encodeURIComponent('https://useless.euton.co')
-    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`, '_blank', 'width=600,height=600')
+    const postUrl: any = `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}&summary=${bragSummary}&title=${encodeURIComponent('Official Certificate of Wasted Time™')}`
+
+    window.open(postUrl, '_blank', 'width=650,height=650')
+    setShowShareGuide(true)
   }
 
   return (
@@ -203,7 +228,15 @@ export default function CertificateModal(props: any) {
               onClick={handleShareLinkedIn}
               style={{ padding: '8px 16px', fontSize: '14px', background: '#0a66c2', color: '#ffffff' }}
             >
-              🔗 Share to LinkedIn
+              🔗 Share Post to LinkedIn
+            </button>
+            <button
+              type="button"
+              className="win95-button"
+              onClick={handleAddCertificationToLinkedIn}
+              style={{ padding: '8px 16px', fontSize: '14px', background: '#004182', color: '#ffffff' }}
+            >
+              🎖️ Add to LinkedIn Certifications
             </button>
             <button
               type="button"
@@ -232,6 +265,86 @@ export default function CertificateModal(props: any) {
           </div>
         </div>
       </div>
+
+      {showShareGuide && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0,0,0,0.6)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 99999,
+            padding: '16px'
+          }}
+        >
+          <div className="win95-outset" style={{ width: '480px', background: '#c0c0c0', padding: '12px' }}>
+            <div className="win95-titlebar" style={{ background: '#0a66c2' }}>
+              <span>📋 LINKEDIN SHARE ASSISTANT v1.0</span>
+              <button
+                type="button"
+                className="win95-button"
+                style={{ padding: '0 4px', height: '16px', fontSize: '10px' }}
+                onClick={() => setShowShareGuide(false)}
+              >
+                ✕
+              </button>
+            </div>
+            <div style={{ padding: '14px 0', fontSize: '13px' }}>
+              <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start', marginBottom: '12px' }}>
+                <div style={{ fontSize: '32px' }}>💼</div>
+                <div>
+                  <strong>Brag text copied to your clipboard!</strong>
+                  <p style={{ margin: '6px 0 0 0', fontSize: '12px', color: '#222' }}>
+                    LinkedIn does not allow websites to inject post commentary automatically. Your official credentials have been copied to your clipboard.
+                  </p>
+                </div>
+              </div>
+              <div className="win95-inset" style={{ padding: '8px', background: '#ffffff', marginBottom: '12px', fontSize: '11px', maxHeight: '110px', overflowY: 'auto', fontFamily: 'monospace', whiteSpace: 'pre-wrap' }}>
+                {`🏆 I am thrilled to announce that I have officially received my Enterprise Certificate of Wasted Time™ from UselessOS (https://useless.euton.co)!\n\n` +
+                  `📊 Official Telemetry Verified:\n` +
+                  `- Time Squandered: ${Math.floor(props.secondsWasted / 60)}m ${props.secondsWasted % 60}s\n` +
+                  `- Unnecessary Clicks: ${props.clicksCount}\n` +
+                  `- Kinetic Mouse Travel: ${props.mouseKm.toFixed(3)} km\n\n` +
+                  `#UselessOS #euton #EnterpriseOverEngineering`}
+              </div>
+              <p style={{ margin: '0 0 12px 0', fontSize: '12px', fontWeight: 'bold', color: '#000080' }}>
+                👉 In the opened LinkedIn window, press <span style={{ background: '#ffff00', padding: '2px 6px', border: '1px solid #999' }}>Ctrl + V</span> to paste your brag text!
+              </p>
+              <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end', flexWrap: 'wrap' }}>
+                <button
+                  type="button"
+                  className="win95-button"
+                  onClick={handleCopyBrag}
+                  style={{ background: '#e0f0ff' }}
+                >
+                  {copied ? '✅ Copied!' : '📋 Re-copy Text'}
+                </button>
+                <button
+                  type="button"
+                  className="win95-button"
+                  onClick={handleDownload}
+                  style={{ background: '#d4edda' }}
+                >
+                  💾 Download Image to Attach
+                </button>
+                <button
+                  type="button"
+                  className="win95-button"
+                  onClick={() => setShowShareGuide(false)}
+                  style={{ fontWeight: 'bold' }}
+                >
+                  OK, Got It!
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {showPaywall && (
         <div

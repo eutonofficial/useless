@@ -28,7 +28,7 @@ export default function ContributorsPage() {
     >
       <div className="marquee-container">
         <div className="marquee-text">
-          ⚠️ CALLING ALL DEVELOPERS ⚠️ TIRED OF CLEAN ARCHITECTURE? ⚠️ COME WRITE HORRIBLE CODE THAT ACTUALLY WORKS ⚠️ PRs MAKING IT BETTER WILL BE REJECTED ⚠️
+          ⚠️ WE WANT YOUR HELP TO MAKE THIS PROJECT MORE CHAOTIC ⚠️ GOT SILLY IDEAS? ⚠️ WRITE BAD CODE WITH US ⚠️ ALL PRs WELCOME ⚠️
         </div>
       </div>
 
@@ -52,7 +52,7 @@ export default function ContributorsPage() {
                 Contributor Sanctuary | UselessOS
               </div>
               <div style={{ fontSize: '12px', color: '#555' }}>
-                <em>&quot;A safe space for developers who want to write terrible code on purpose.&quot;</em>
+                <em>&quot;Help us build the most chaotic, funny, and over-engineered app on the internet.&quot;</em>
               </div>
             </div>
           </div>
@@ -75,19 +75,19 @@ export default function ContributorsPage() {
 
         <div className="win95-outset" style={{ marginBottom: '20px', background: '#c0c0c0' }}>
           <div className="win95-titlebar">
-            <span>📢 Are You A Developer Tired of Clean Code?</span>
+            <span>📢 We Want Your Help To Make This More Chaotic!</span>
             <span style={{ fontSize: '11px' }}>HELP_WANTED.EXE</span>
           </div>
 
           <div style={{ padding: '20px', fontSize: '14px', lineHeight: '1.6' }}>
             <h2 style={{ margin: '0 0 10px 0', fontSize: '20px', color: '#000080' }}>
-              Are you a dev? Do you secretly want to write bad code?
+              Want to help us make this project more chaotic?
             </h2>
             <p style={{ margin: '0 0 14px 0', color: '#222' }}>
-              At your 9-to-5 job, you spend 40 hours a week suffering under Jira sprints, SonarQube linter warnings, clean architecture dogmas, and senior engineers rejecting your PR over an extra newline.
+              Every day at work, you are told to write clean code, keep things simple, and make apps run super fast. That gets boring!
             </p>
             <p style={{ margin: '0 0 14px 0', color: '#222' }}>
-              <strong>Welcome to your safe haven.</strong> In UselessOS, we celebrate bad code, 1,000-branch manual lookup tables, artificial server bottlenecks, and multi-layered div soups.
+              <strong>Here, we want the exact opposite.</strong> We want your help to make UselessOS even more chaotic, slow, and ridiculous. If you have a funny or terrible idea, we want you to build it and add it here!
             </p>
 
             <div
@@ -100,26 +100,26 @@ export default function ContributorsPage() {
                 fontSize: '13px'
               }}
             >
-              <strong>🚨 The Iron Golden Rule:</strong>
+              <strong>🚨 The Only Golden Rule:</strong>
               <br />
-              Any PR that optimizes performance, makes the UI cleaner, removes redundancy, or makes the app intuitive will be <strong>straight-away rejected</strong>.
-              However, your code <em>must actually work</em> and all tests (<code>npm test</code>) must pass 100%!
+              Whatever you build must actually work, and all tests (<code>npm test</code>) must pass.
+              The final result must be real, but the journey to get there should be pure creative chaos!
             </div>
 
             <h3 style={{ margin: '16px 0 8px 0', color: '#800000', fontSize: '16px' }}>
-              📜 Sins You Must Commit:
+              💡 Fun Ways You Can Make It More Chaotic:
             </h3>
             <ul style={{ margin: '0 0 16px 0', paddingLeft: '24px' }}>
-              <li><strong>Zero Semicolons:</strong> Semicolons are strictly banned. Let ASI fight for its life.</li>
-              <li><strong>Cursed Variables:</strong> Use single characters (<code>a</code>, <code>b</code>, <code>_0x4f</code>) or deceptive flags (e.g. <code>isDone</code> for a counter).</li>
-              <li><strong>Nested Div Soup:</strong> Never use clean flexbox without at least 3 redundant wrapper divs.</li>
-              <li><strong>Chaotic Commits:</strong> Conventional commits (<code>feat:</code>, <code>fix:</code>) are banned. Use messages like <code>made button louder</code> or <code>fixed nothing</code>.</li>
-              <li><strong>Protect Existing Tests:</strong> Do not touch existing core tests. Only add new tests for your new useless modules!</li>
+              <li><strong>Add Silly Buttons:</strong> Make buttons that dodge the mouse, shuffle letters, or play loud retro beeps.</li>
+              <li><strong>Make Simple Things Hard:</strong> Why let users just click once when they could solve a puzzle first?</li>
+              <li><strong>Over-Complicate Everything:</strong> Replace a 1-line function with a huge 500-line lookup table.</li>
+              <li><strong>Zero Semicolons:</strong> Semicolons are strictly banned in code. Keep the files delightfully cursed!</li>
+              <li><strong>Keep Tests Passing:</strong> Add fun new tests for your modules without breaking old ones.</li>
             </ul>
 
             <div style={{ textAlign: 'center', marginTop: '16px' }}>
               <a
-                href="https://github.com/your-username/useless-os"
+                href="https://github.com/eutonofficial/useless"
                 target="_blank"
                 rel="noreferrer"
                 className="win95-button"
@@ -132,7 +132,7 @@ export default function ContributorsPage() {
                   fontWeight: 'bold'
                 }}
               >
-                🐙 Open A Pull Request (Make It Worse)
+                🐙 Help Us Make It More Chaotic (Submit a PR)
               </a>
             </div>
           </div>
