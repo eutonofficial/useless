@@ -1,23 +1,18 @@
-# 💩 UselessOS™ Contributor Hall of Infamy & Guide
+# 💩 UselessOS™ Contributor Guide
 
-> *"Are you a developer? Do you secretly want to write bad code?"*
+> *"We want your help to make this project more chaotic!"*
 
 Live Playground: [useless.euton.co](https://useless.euton.co)  
 Main Agency: [euton.co](https://euton.co)
 
 ---
 
-## 📢 Calling All Over-Engineered Souls
+## 📢 Help Us Make UselessOS More Chaotic!
 
-At your day job, you are held hostage by:
-- Linters screaming over trailing whitespace.
-- Pull request reviewers debating if a variable should be camelCase or PascalCase.
-- Senior architects preaching DRY, clean architecture, and micro-optimizations.
-- 45-minute daily standups discussing 3 lines of CSS.
+At your day job, everyone wants clean code, simple designs, and fast apps. That gets boring!
 
-**Welcome home.**
-
-In UselessOS, we celebrate bad code, 1,000-branch manual lookup tables, artificial server delays, 15-layer div soups, and zero utility. 
+**Here, we want the exact opposite.**  
+We need your help to make UselessOS even more chaotic, funny, and ridiculous. If you have a silly, terrible, or delightfully over-complicated idea, we want you to build it and send a pull request!
 
 ---
 
