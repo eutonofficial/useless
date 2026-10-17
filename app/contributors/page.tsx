@@ -32,7 +32,7 @@ export default function ContributorsPage() {
         </div>
       </div>
 
-      <main style={{ padding: '24px 20px', maxWidth: '960px', margin: '0 auto', width: '100%' }}>
+      <main style={{ padding: '16px 10px', maxWidth: '960px', margin: '0 auto', width: '100%' }}>
         <div
           className="win95-outset"
           style={{
@@ -163,7 +163,7 @@ export default function ContributorsPage() {
               />
             </div>
 
-            <div style={{ flex: 1, minWidth: '260px' }}>
+            <div style={{ flex: 1, minWidth: '200px' }}>
               <div style={{ fontSize: '16px', fontWeight: 'bold', color: '#965a00', marginBottom: '6px' }}>
                 Official Digital Bribery Address (SOL):
               </div>
@@ -171,7 +171,7 @@ export default function ContributorsPage() {
                 If you survived this operating system and genuinely feel compelled to send crypto into the ether, here is our Solana network address:
               </p>
 
-              <div style={{ display: 'flex', gap: '6px', alignItems: 'center', marginBottom: '10px' }}>
+              <div style={{ display: 'flex', gap: '6px', alignItems: 'center', marginBottom: '10px', flexWrap: 'wrap' }}>
                 <input
                   type="text"
                   readOnly

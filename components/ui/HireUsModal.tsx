@@ -36,7 +36,7 @@ export default function HireUsModal(props: any) {
       }}
     >
       <div
-        className="win95-outset"
+        className="win95-outset win95-modal-responsive"
         style={{
           width: '540px',
           maxWidth: '100%',
@@ -102,7 +102,7 @@ export default function HireUsModal(props: any) {
             <p style={{ margin: '0 0 8px 0', fontSize: '11px', color: '#444' }}>
               If you genuinely want to throw a tip at this glorious disaster of an OS:
             </p>
-            <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+            <div style={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap' }}>
               <input
                 type="text"
                 readOnly

@@ -20,7 +20,7 @@ export default function CookieModal(props: any) {
       }}
     >
       <div
-        className="win95-outset"
+        className="win95-outset win95-modal-responsive"
         style={{
           width: '460px',
           maxWidth: '100%',

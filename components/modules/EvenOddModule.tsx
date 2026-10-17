@@ -74,7 +74,7 @@ export default function EvenOddModule(props: any) {
         Numbers 1,001 and higher are locked behind our Enterprise Paywall.
       </div>
 
-      <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '12px' }}>
+      <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '12px', flexWrap: 'wrap' }}>
         <label style={{ fontSize: '13px', fontWeight: 'bold' }}>Enter a number:</label>
         <input
           type="number"
@@ -88,7 +88,7 @@ export default function EvenOddModule(props: any) {
           className="win95-button"
           onClick={handleVerify}
           disabled={loading}
-          style={{ backgroundColor: loading ? '#ddd' : '#c0c0c0' }}
+          style={{ backgroundColor: loading ? '#ddd' : '#c0c0c0', touchAction: 'manipulation' }}
         >
           {loading ? '⏳ Checking...' : '⚡ Check Even / Odd'}
         </button>
@@ -141,7 +141,7 @@ export default function EvenOddModule(props: any) {
             zIndex: 9999
           }}
         >
-          <div className="win95-outset" style={{ width: '420px', padding: '16px', background: '#c0c0c0' }}>
+          <div className="win95-outset win95-modal-responsive" style={{ width: '420px', maxWidth: '100%', padding: '16px', background: '#c0c0c0' }}>
             <div className="win95-titlebar" style={{ background: 'darkred' }}>
               <span>🚨 4-DIGIT INTEGER PAYWALL</span>
               <button
