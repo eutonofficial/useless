@@ -87,7 +87,10 @@ export default function ClickSpeedModule(props: any) {
           fontSize: '18px',
           fontWeight: 'bold',
           background: clicks > staticRecord ? '#d4edda' : '#c0c0c0',
-          borderColor: clicks > staticRecord ? '#28a745' : '#808080'
+          borderColor: clicks > staticRecord ? '#28a745' : '#808080',
+          touchAction: 'manipulation',
+          userSelect: 'none',
+          WebkitUserSelect: 'none'
         }}
       >
         {!gameActive && timeLeft === 60
@@ -132,7 +135,7 @@ export default function ClickSpeedModule(props: any) {
             padding: '16px'
           }}
         >
-          <div className="win95-outset" style={{ width: '420px', background: '#c0c0c0', padding: '12px' }}>
+          <div className="win95-outset win95-modal-responsive" style={{ width: '420px', maxWidth: '100%', background: '#c0c0c0', padding: '12px' }}>
             <div className="win95-titlebar" style={{ background: '#b8860b' }}>
               <span>🏆 WORLD RECORD BROKEN! (PAYWALL)</span>
               <button

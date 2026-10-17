@@ -31,6 +31,26 @@ export default function CoinFlipModule(props: any) {
     }
   }
 
+  const handleTouchMoveArea = (e: any) => {
+    // Oops I did it again, touch screen phone swipe entropy harvester
+    if (entropyCount >= TARGET_ENTROPY) return
+    if (!e.touches || e.touches.length === 0) return
+    const t: any = e.touches[0]
+    const cur: any = { x: t.clientX, y: t.clientY }
+    if (lastPos) {
+      const dx: any = cur.x - lastPos.x
+      const dy: any = cur.y - lastPos.y
+      const dist: any = Math.sqrt(dx * dx + dy * dy)
+      if (dist > 5) {
+        setEntropyCount((prev: any) => Math.min(TARGET_ENTROPY, prev + 1))
+        setCoords((prev: any) => [...prev.slice(-100), cur])
+        setLastPos(cur)
+      }
+    } else {
+      setLastPos(cur)
+    }
+  }
+
   const handleFlip = async () => {
     props.onIncrementClicks()
     if (entropyCount < TARGET_ENTROPY) return
@@ -85,12 +105,14 @@ export default function CoinFlipModule(props: any) {
       >
         <strong>🌀 Charge The Coin:</strong>
         <br />
-        To flip a coin, you must shake your mouse inside the box below <strong>300 times</strong> to build up energy.
+        To flip a coin, you must shake your mouse (or swipe your finger on phone) inside the box below <strong>300 times</strong> to build up energy.
       </div>
 
       <div
         className="win95-inset"
         onMouseMove={handleMouseMoveArea}
+        onTouchMove={handleTouchMoveArea}
+        onTouchStart={handleTouchMoveArea}
         style={{
           height: '110px',
           background: entropyCount >= TARGET_ENTROPY ? '#d4edda' : '#fff0f5',
@@ -100,16 +122,17 @@ export default function CoinFlipModule(props: any) {
           justifyContent: 'center',
           cursor: entropyCount >= TARGET_ENTROPY ? 'default' : 'crosshair',
           border: entropyCount >= TARGET_ENTROPY ? '2px solid #28a745' : '2px dashed #dc3545',
-          marginBottom: '10px'
+          marginBottom: '10px',
+          touchAction: 'none'
         }}
       >
         <span style={{ fontSize: '24px' }}>
           {entropyCount >= TARGET_ENTROPY ? '🔋' : '⚡'}
         </span>
-        <div style={{ fontSize: '13px', fontWeight: 'bold', marginTop: '4px' }}>
+        <div style={{ fontSize: '13px', fontWeight: 'bold', marginTop: '4px', textAlign: 'center', padding: '0 4px' }}>
           {entropyCount >= TARGET_ENTROPY
             ? '✅ COIN FULLY CHARGED! READY TO FLIP.'
-            : 'SHAKE YOUR MOUSE HERE TO CHARGE THE COIN'}
+            : 'SHAKE MOUSE OR SWIPE FINGER HERE TO CHARGE'}
         </div>
         <div style={{ fontSize: '11px', color: '#666' }}>
           Shakes completed: {entropyCount} / {TARGET_ENTROPY} ({percent}%)
@@ -198,7 +221,7 @@ export default function CoinFlipModule(props: any) {
             padding: '16px'
           }}
         >
-          <div className="win95-outset" style={{ width: '420px', background: '#c0c0c0', padding: '12px' }}>
+          <div className="win95-outset win95-modal-responsive" style={{ width: '420px', maxWidth: '100%', background: '#c0c0c0', padding: '12px' }}>
             <div className="win95-titlebar" style={{ background: '#000080' }}>
               <span>🪙 COIN FLIP CHEAT PAYWALL</span>
               <button

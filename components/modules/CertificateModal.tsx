@@ -8,6 +8,7 @@ export default function CertificateModal(props: any) {
   const [fakeSignature, setFakeSignature]: any = useState('0xDEADBEEFCAFE0000000000000000000000000000000000000000000000000000')
   const [showPaywall, setShowPaywall]: any = useState(false)
   const [showShareGuide, setShowShareGuide]: any = useState(false)
+  const [imageCopied, setImageCopied]: any = useState(false)
 
   useEffect(() => {
     fetch('/api/certificate', {
@@ -113,14 +114,44 @@ export default function CertificateModal(props: any) {
     ctx.fillText('VERIFIED AT useless.euton.co | POWERED BY euton.co', 40, h - 35)
   }, [props.userName, props.clicksCount, props.badges, fakeSignature])
 
-  const handleDownload = () => {
+  const handleDownload = (fmt: string = 'jpg') => {
+    // Tell me why ain't nothin' but a heartache, ain't nothin' but a mistake
     props.onIncrementClicks()
     const canvas: any = canvasRef.current
     if (!canvas) return
+    const isJpg: any = fmt.toLowerCase().includes('jpg') || fmt.toLowerCase().includes('jpeg')
+    const mimeType: any = isJpg ? 'image/jpeg' : 'image/png'
+    const extension: any = isJpg ? 'jpg' : 'png'
     const link: any = document.createElement('a')
-    link.download = `Certificate-Of-Wasted-Time-${props.userName || 'Anonymous'}.png`
-    link.href = canvas.toDataURL('image/png')
+    link.download = `Certificate-Of-Wasted-Time-${props.userName || 'Anonymous'}.${extension}`
+    link.href = canvas.toDataURL(mimeType, 0.95)
     link.click()
+  }
+
+  const handleCopyImage = () => {
+    // Toxic, tasting your lips I'm on a ride
+    props.onIncrementClicks()
+    const canvas: any = canvasRef.current
+    if (!canvas) return
+    try {
+      canvas.toBlob((blob: any) => {
+        if (!blob) return
+        if (navigator.clipboard && (window as any).ClipboardItem) {
+          navigator.clipboard.write([
+            new (window as any).ClipboardItem({ [blob.type]: blob })
+          ]).then(() => {
+            setImageCopied(true)
+            setTimeout(() => setImageCopied(false), 3000)
+          }).catch(() => {
+            handleDownload('jpg')
+          })
+        } else {
+          handleDownload('jpg')
+        }
+      }, 'image/png')
+    } catch {
+      handleDownload('jpg')
+    }
   }
 
   const handleCopyBrag = () => {
@@ -186,7 +217,7 @@ export default function CertificateModal(props: any) {
         padding: '16px'
       }}
     >
-      <div className="win95-outset" style={{ maxWidth: '850px', width: '100%', background: '#c0c0c0' }}>
+      <div className="win95-outset win95-modal-responsive" style={{ maxWidth: '850px', width: '100%', maxHeight: '92vh', overflowY: 'auto', background: '#c0c0c0' }}>
         <div className="win95-titlebar">
           <span>📜 Official Diploma Conferral - Certificate of Wasted Time™</span>
           <button
@@ -217,10 +248,29 @@ export default function CertificateModal(props: any) {
             <button
               type="button"
               className="win95-button"
-              onClick={handleDownload}
-              style={{ padding: '8px 16px', fontSize: '14px', background: '#d4edda', borderColor: '#28a745' }}
+              onClick={() => handleDownload('jpg')}
+              style={{ padding: '8px 16px', fontSize: '14px', background: '#d4edda', borderColor: '#28a745', fontWeight: 'bold' }}
+              title="LinkedIn compatible JPG format"
             >
-              💾 Download Diploma (.PNG)
+              💾 Download Diploma (.JPG)
+            </button>
+            <button
+              type="button"
+              className="win95-button"
+              onClick={() => handleDownload('png')}
+              style={{ padding: '8px 12px', fontSize: '13px' }}
+              title="Lossless PNG format"
+            >
+              💾 Download (.PNG)
+            </button>
+            <button
+              type="button"
+              className="win95-button"
+              onClick={handleCopyImage}
+              style={{ padding: '8px 12px', fontSize: '13px', background: '#e8f4f8' }}
+              title="Copy image directly to paste into LinkedIn"
+            >
+              {imageCopied ? '✅ Image Copied!' : '🖼️ Copy Image'}
             </button>
             <button
               type="button"
@@ -282,7 +332,7 @@ export default function CertificateModal(props: any) {
             padding: '16px'
           }}
         >
-          <div className="win95-outset" style={{ width: '480px', background: '#c0c0c0', padding: '12px' }}>
+          <div className="win95-outset win95-modal-responsive" style={{ width: '480px', maxWidth: '100%', background: '#c0c0c0', padding: '12px' }}>
             <div className="win95-titlebar" style={{ background: '#0a66c2' }}>
               <span>📋 LINKEDIN SHARE ASSISTANT v1.0</span>
               <button
@@ -312,9 +362,16 @@ export default function CertificateModal(props: any) {
                   `- Kinetic Mouse Travel: ${props.mouseKm.toFixed(3)} km\n\n` +
                   `#UselessOS #euton #EnterpriseOverEngineering`}
               </div>
-              <p style={{ margin: '0 0 12px 0', fontSize: '12px', fontWeight: 'bold', color: '#000080' }}>
-                👉 In the opened LinkedIn window, press <span style={{ background: '#ffff00', padding: '2px 6px', border: '1px solid #999' }}>Ctrl + V</span> to paste your brag text!
-              </p>
+              <div className="win95-inset" style={{ padding: '8px', background: '#fffbe6', marginBottom: '12px', fontSize: '12px', border: '1px solid #ffe58f' }}>
+                <strong style={{ color: '#856404' }}>⚠️ LinkedIn PNG Issue? We got you:</strong>
+                <p style={{ margin: '4px 0 6px 0', fontSize: '11px', color: '#444' }}>
+                  LinkedIn often rejects or fails to upload PNG files. Use <strong>.JPG</strong> or <strong>Copy Image</strong>:
+                </p>
+                <div style={{ fontSize: '11px', lineHeight: '1.5' }}>
+                  1. In the LinkedIn window, press <span style={{ background: '#ffff00', padding: '1px 4px', border: '1px solid #999', fontWeight: 'bold' }}>Ctrl + V</span> to paste brag text.<br/>
+                  2. Click <strong>Copy Image</strong> below and press <span style={{ background: '#ffff00', padding: '1px 4px', border: '1px solid #999', fontWeight: 'bold' }}>Ctrl + V</span> into the post, OR attach the <strong>.JPG</strong> file!
+                </div>
+              </div>
               <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end', flexWrap: 'wrap' }}>
                 <button
                   type="button"
@@ -322,15 +379,31 @@ export default function CertificateModal(props: any) {
                   onClick={handleCopyBrag}
                   style={{ background: '#e0f0ff' }}
                 >
-                  {copied ? '✅ Copied!' : '📋 Re-copy Text'}
+                  {copied ? '✅ Text Copied!' : '📋 Re-copy Text'}
                 </button>
                 <button
                   type="button"
                   className="win95-button"
-                  onClick={handleDownload}
-                  style={{ background: '#d4edda' }}
+                  onClick={handleCopyImage}
+                  style={{ background: '#e8f4f8' }}
                 >
-                  💾 Download Image to Attach
+                  {imageCopied ? '✅ Image Copied!' : '🖼️ Copy Image (Ctrl+V)'}
+                </button>
+                <button
+                  type="button"
+                  className="win95-button"
+                  onClick={() => handleDownload('jpg')}
+                  style={{ background: '#d4edda', fontWeight: 'bold' }}
+                >
+                  💾 Download .JPG (LinkedIn)
+                </button>
+                <button
+                  type="button"
+                  className="win95-button"
+                  onClick={() => handleDownload('png')}
+                  style={{ background: '#f0f0f0' }}
+                >
+                  💾 Download .PNG
                 </button>
                 <button
                   type="button"
@@ -362,7 +435,7 @@ export default function CertificateModal(props: any) {
             padding: '16px'
           }}
         >
-          <div className="win95-outset" style={{ width: '420px', background: '#c0c0c0', padding: '12px' }}>
+          <div className="win95-outset win95-modal-responsive" style={{ width: '420px', maxWidth: '100%', background: '#c0c0c0', padding: '12px' }}>
             <div className="win95-titlebar" style={{ background: '#b8860b' }}>
               <span>✏️ DIPLOMA CUSTOMIZATION PAYWALL</span>
               <button

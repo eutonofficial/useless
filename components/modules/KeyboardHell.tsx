@@ -75,6 +75,8 @@ export default function KeyboardHell(props: any) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: '6px',
             background: '#ffffff'
           }}
         >
@@ -84,7 +86,7 @@ export default function KeyboardHell(props: any) {
               type="button"
               className="win95-button"
               onClick={handleBackspace}
-              style={{ fontSize: '11px', padding: '2px 6px' }}
+              style={{ fontSize: '11px', padding: '2px 6px', touchAction: 'manipulation' }}
               title="Backspace"
             >
               ⌫ Delete Letter
@@ -93,7 +95,7 @@ export default function KeyboardHell(props: any) {
               type="button"
               className="win95-button"
               onClick={handleClear}
-              style={{ fontSize: '11px', padding: '2px 6px' }}
+              style={{ fontSize: '11px', padding: '2px 6px', touchAction: 'manipulation' }}
               title="Clear all"
             >
               🗑️ Clear Name
@@ -103,7 +105,7 @@ export default function KeyboardHell(props: any) {
       </div>
 
       <div
-        className="win95-inset"
+        className="win95-inset keyboard-hell-grid"
         style={{
           padding: '8px',
           background: '#808080',
@@ -116,13 +118,14 @@ export default function KeyboardHell(props: any) {
           <button
             key={index}
             type="button"
-            className="win95-button"
+            className="win95-button keyboard-hell-key"
             onClick={() => handleKeyPress(char)}
             style={{
               padding: '6px 2px',
               fontSize: '13px',
               fontFamily: 'monospace',
-              minWidth: '28px',
+              minWidth: '24px',
+              touchAction: 'manipulation',
               backgroundColor: char === ' ' ? '#e8e8e8' : '#c0c0c0'
             }}
           >
@@ -131,7 +134,7 @@ export default function KeyboardHell(props: any) {
         ))}
       </div>
 
-      <div style={{ marginTop: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div style={{ marginTop: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '6px' }}>
         <button
           type="button"
           className="win95-button"
@@ -139,7 +142,7 @@ export default function KeyboardHell(props: any) {
             props.onIncrementClicks()
             setShuffleTick((prev: any) => prev + 1)
           }}
-          style={{ fontSize: '11px' }}
+          style={{ fontSize: '11px', touchAction: 'manipulation' }}
         >
           🔀 Shuffle Buttons
         </button>
@@ -147,7 +150,7 @@ export default function KeyboardHell(props: any) {
           type="button"
           className="win95-button"
           onClick={() => setShowPaywall(true)}
-          style={{ fontSize: '11px', background: '#ffffd0' }}
+          style={{ fontSize: '11px', background: '#ffffd0', touchAction: 'manipulation' }}
         >
           🔒 Stop Shuffling ($49.99)
         </button>
@@ -169,7 +172,7 @@ export default function KeyboardHell(props: any) {
             padding: '16px'
           }}
         >
-          <div className="win95-outset" style={{ width: '420px', background: '#c0c0c0', padding: '12px' }}>
+          <div className="win95-outset win95-modal-responsive" style={{ width: '420px', maxWidth: '100%', background: '#c0c0c0', padding: '12px' }}>
             <div className="win95-titlebar" style={{ background: '#cc3300' }}>
               <span>🔒 KEYBOARD STABILIZER PAYWALL</span>
               <button

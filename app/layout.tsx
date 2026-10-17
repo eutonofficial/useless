@@ -11,20 +11,20 @@ export const metadata: any = {
     siteName: 'UselessOS by euton.co',
     images: [
       {
-        url: '/icon.svg',
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Certificate of Wasted Time'
+        alt: 'Official Certificate of Wasted Time™'
       }
     ],
     locale: 'en_US',
     type: 'website'
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: '💩 Official Certificate of Wasted Time™ | UselessOS',
     description: 'The world\'s most over-engineered suite of useless utilities by euton.co.',
-    images: ['/icon.svg']
+    images: ['/og-image.jpg']
   },
   icons: {
     icon: '/icon.svg',
@@ -33,10 +33,18 @@ export const metadata: any = {
   }
 }
 
+export const viewport: any = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5
+}
+
 export default function RootLayout(props: any) {
+  // Hit me baby one more time, responsive mobile viewport online
   return (
     <html lang="en">
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
       </head>
       <body>{props.children}</body>

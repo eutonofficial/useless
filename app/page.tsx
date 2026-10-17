@@ -57,8 +57,26 @@ export default function Home() {
       setLastMousePos({ x: e.clientX, y: e.clientY })
     }
 
+    const handleGlobalTouchMove: any = (e: any) => {
+      // Toxic by Britney Spears, kinetic touch tracking on mobile screens
+      if (!e.touches || e.touches.length === 0) return
+      const t: any = e.touches[0]
+      if (lastMousePos) {
+        const dx: any = t.clientX - lastMousePos.x
+        const dy: any = t.clientY - lastMousePos.y
+        const distancePx: any = Math.sqrt(dx * dx + dy * dy)
+        const distanceKm: any = (distancePx * 0.000264583) / 1000
+        setMouseKm((prev: any) => prev + distanceKm)
+      }
+      setLastMousePos({ x: t.clientX, y: t.clientY })
+    }
+
     window.addEventListener('mousemove', handleGlobalMouseMove)
-    return () => window.removeEventListener('mousemove', handleGlobalMouseMove)
+    window.addEventListener('touchmove', handleGlobalTouchMove, { passive: true })
+    return () => {
+      window.removeEventListener('mousemove', handleGlobalMouseMove)
+      window.removeEventListener('touchmove', handleGlobalTouchMove)
+    }
   }, [lastMousePos])
 
   const playRetroBeep = (freq: any = 440) => {
@@ -284,7 +302,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div style={{ margin: '7px 42px 19px 5px' }}>
+        <div className="cursed-stage-wrapper" style={{ margin: '7px 42px 19px 5px' }}>
           {currentStage === 1 && (
             <Win95Window
               title="Step 1: Enter Your Name"
@@ -483,19 +501,20 @@ export default function Home() {
       </main>
 
       <footer
-        className="win95-outset"
+        className="win95-outset win95-taskbar"
         style={{
           position: 'fixed',
           bottom: 0,
           left: 0,
           right: 0,
-          height: '36px',
+          minHeight: '36px',
           background: '#c0c0c0',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: '2px 8px',
-          zIndex: 8888
+          zIndex: 8888,
+          gap: '4px'
         }}
       >
         <div style={{ position: 'relative' }}>
@@ -623,24 +642,24 @@ export default function Home() {
           )}
         </div>
 
-        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-          <div className="win95-inset" style={{ padding: '2px 8px', fontSize: '12px', fontFamily: 'monospace' }}>
-            🖱️ Clicks: {clicksCount}
+        <div className="win95-taskbar-stats" style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+          <div className="win95-inset" style={{ padding: '2px 6px', fontSize: '11px', fontFamily: 'monospace' }}>
+            🖱️ {clicksCount}
           </div>
-          <div className="win95-inset" style={{ padding: '2px 8px', fontSize: '12px', fontFamily: 'monospace' }}>
-            🏃 Distance: {mouseKm.toFixed(3)} km
+          <div className="win95-inset win95-distance-metric" style={{ padding: '2px 6px', fontSize: '11px', fontFamily: 'monospace' }}>
+            🏃 {mouseKm.toFixed(2)} km
           </div>
           <div
             className="win95-inset"
             style={{
-              padding: '2px 8px',
-              fontSize: '12px',
+              padding: '2px 6px',
+              fontSize: '11px',
               fontFamily: 'monospace',
               color: '#000080',
               fontWeight: 'bold'
             }}
           >
-            ⏱️ Time Wasted: {formatTimer(secondsWasted)}
+            ⏱️ {formatTimer(secondsWasted)}
           </div>
         </div>
       </footer>

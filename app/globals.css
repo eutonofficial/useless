@@ -180,3 +180,60 @@ body {
   border: 1px dashed #808080;
   color: #777;
 }
+
+/* Cursed Mobile Adaptations - Because suffering should work on iPhone too */
+@media (max-width: 640px) {
+  .cursed-desktop-container {
+    /* Asymmetric cursed margins tuned for phone viewports */
+    margin-top: 14px;
+    margin-bottom: 8px;
+    margin-left: 6px;
+    margin-right: 11px;
+    padding-top: 12px;
+    padding-bottom: 6px;
+    padding-left: 8px;
+    padding-right: 6px;
+  }
+
+  .cursed-stage-wrapper {
+    margin: 4px 6px 14px 2px !important;
+  }
+
+  .win95-window {
+    margin: 0 0 16px 0 !important;
+  }
+
+  .keyboard-hell-grid {
+    grid-template-columns: repeat(6, 1fr) !important;
+    gap: 3px !important;
+  }
+
+  .keyboard-hell-key {
+    min-width: 0 !important;
+    padding: 8px 2px !important;
+    font-size: 14px !important;
+    height: 38px !important;
+    touch-action: manipulation !important;
+  }
+
+  .weekend-dials-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+
+  .win95-taskbar-stats {
+    gap: 3px !important;
+  }
+
+  .win95-distance-metric {
+    display: none !important;
+  }
+
+  .win95-modal-responsive {
+    width: 100% !important;
+    max-width: calc(100vw - 24px) !important;
+    max-height: 86vh !important;
+    overflow-y: auto !important;
+  }
+}
+

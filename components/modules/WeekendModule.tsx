@@ -56,7 +56,7 @@ export default function WeekendModule(props: any) {
         Spin the 3 wheels to pick your location coordinates, then click the button to check if today is Saturday or Sunday.
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px', marginBottom: '12px' }}>
+      <div className="weekend-dials-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px', marginBottom: '12px' }}>
         <div className="win95-inset" style={{ padding: '6px', textAlign: 'center', background: '#fafafa' }}>
           <div style={{ fontSize: '11px', fontWeight: 'bold' }}>Latitude</div>
           <div style={{ fontSize: '18px', fontWeight: 'bold', margin: '4px 0', color: '#000080' }}>{lat}°</div>
@@ -145,7 +145,7 @@ export default function WeekendModule(props: any) {
             padding: '16px'
           }}
         >
-          <div className="win95-outset" style={{ width: '420px', background: '#c0c0c0', padding: '12px' }}>
+          <div className="win95-outset win95-modal-responsive" style={{ width: '420px', maxWidth: '100%', background: '#c0c0c0', padding: '12px' }}>
             <div className="win95-titlebar" style={{ background: '#800080' }}>
               <span>📍 MANUAL LOCATION INPUT PAYWALL</span>
               <button
